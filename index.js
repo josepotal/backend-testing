@@ -18,5 +18,5 @@ app.use('/birds', birds);
 app.use('/api', api);
 
 connection.sync().then(() => {
-  app.listen(3000, () => console.log('example app listening at port 3000...'));
+  app.listen(5000, () => console.log('example app listening at port 5000...'));
 });
