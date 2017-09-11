@@ -12,6 +12,10 @@ export default function users(state = initialState, action) {
         ...state,
         usersList: payload.data
       };
+    case 'CREATE_USER_FULFILLED':
+      return {
+        ...state
+      };
     default:
       return state;
   }

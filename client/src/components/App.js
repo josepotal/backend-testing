@@ -1,40 +1,23 @@
 import React, { Component } from 'react';
-//import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import { BrowserRouter, Route } from 'react-router-dom';
 
-import * as UsersActions from '../actions/Users';
+import About from './About';
+import Home from './Home';
 
 class App extends Component {
-  constructor() {
-    super();
-    this.getUsers = this.getUsers.bind(this);
-  }
-  getUsers() {
-    const { usersActions } = this.props;
-    usersActions.getUsers();
-  }
-
   render() {
     return (
       <div>
-        <div>Hi there folks!</div>
-        <button onClick={this.getUsers}>Nueva clase</button>
+        <BrowserRouter>
+          <div>
+            <Route exact path="/home" component={Home} />
+            <Route path="/settings" render={() => <h1>Hello Settings</h1>} />
+            <Route path="/about" component={About} />
+          </div>
+        </BrowserRouter>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    users: state.users
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    usersActions: bindActionCreators(UsersActions, dispatch)
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

@@ -10,8 +10,28 @@ const api = require('./controllers/api');
 
 const app = express();
 
-// morgan middleware
+//THIRD PARTY body-parser middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+//ERROR-HANDLING middlware
+app.use(function(err, req, res, next) {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
+
+// BUILT-IN middleware --> serve static files '/public/index.js'
+app.use('/public', express.static(__dirname + '/public'));
+
+// THIRD-PARTY morgan middleware --> is an application.level middleware, as it has no mount path
 app.use(morgan('dev'));
+
+// Set view engine of templates
+app.set('view engine', 'pug');
+
+app.get('/pug', (req, res) => {
+  res.render('index', { title: 'Hey', message: 'Hello there' });
+});
 
 // express.Router is like a 'mini-app'
 app.use('/birds', birds);

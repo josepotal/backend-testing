@@ -1,9 +1,15 @@
 const express = require('express');
 const router = express.Router();
 
-// middleware that is specific for this route
-router.use(function timeLog(req, res, next) {
+// ROUTER-LEVEL middleware. It is specific for this route '/birds'
+router.use((req, res, next) => {
   console.log('Birds Time: ', Date.now());
+  next();
+});
+
+// Sub-stack middleware for '/birds/about'
+router.use('/about', (req, res, next) => {
+  console.log('Birds About visited!');
   next();
 });
 
