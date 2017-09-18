@@ -1,4 +1,5 @@
 const express = require('express');
+
 const router = express.Router();
 
 // ROUTER-LEVEL middleware. It is specific for this route '/birds'
@@ -13,12 +14,12 @@ router.use('/about', (req, res, next) => {
   next();
 });
 
-//define home page
+// define home page
 router.get('/', (req, res) => {
   res.send('Birds home page');
 });
 
-//define about route
+// define about route
 router.get('/about', (req, res) => {
   res.send('Birds about page');
 });

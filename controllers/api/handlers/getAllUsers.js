@@ -1,12 +1,12 @@
 const User = require('../../../models/User');
 
-//this just sends a message
+// this just sends a message
 module.exports = (req, res) => {
   User.findAll()
-    .then(users => {
+    .then((users) => {
       res.json(users);
     })
-    .catch(err => {
+    .catch((err) => {
       throw err;
     });
 };

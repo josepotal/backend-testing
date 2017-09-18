@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 
 class NewUser extends Component {
   constructor() {
     super();
     this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  onSubmit(values) {
+    const { usersActions } = this.props;
+    usersActions.createUser(values);
+    console.log('user created');
   }
 
   renderField(field) {
@@ -23,17 +30,10 @@ class NewUser extends Component {
     );
   }
 
-  onSubmit(values) {
-    console.log(this.props.usersActions);
-    const { usersActions } = this.props;
-    usersActions.createUser(values);
-    console.log('user created');
-  }
-
   render() {
     const { handleSubmit } = this.props;
     return (
-      <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+      <form onSubmit={handleSubmit(this.onSubmit)}>
         <Field
           label="first_name"
           name="first_name"
@@ -53,6 +53,11 @@ class NewUser extends Component {
     );
   }
 }
+
+NewUser.propTypes = {
+  usersActions: PropTypes.obj.isRequired,
+  handleSubmit: PropTypes.func.isRequired
+};
 
 export default reduxForm({
   form: 'NewUserForm'

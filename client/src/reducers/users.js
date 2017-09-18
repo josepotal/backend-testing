@@ -1,4 +1,4 @@
-//import { GET_USERS } from '../actions/Users';
+// import { GET_USERS } from '../actions/Users';
 
 const initialState = {
   usersList: []

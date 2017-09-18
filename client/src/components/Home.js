@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import NewUserForm from './NewUserForm';
@@ -19,7 +20,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <div>Hi there folks!</div>
+        <div className="header">Hi there folks!</div>
         <button onClick={this.getUsers}>Get all users</button>
         <NewUserForm usersActions={this.props.usersActions} />
       </div>
@@ -27,16 +28,16 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    users: state.users
-  };
+Home.propTypes = {
+  usersActions: PropTypes.obj.isRequired
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    usersActions: bindActionCreators(UsersActions, dispatch)
-  };
-};
+const mapStateToProps = state => ({
+  users: state.users
+});
+
+const mapDispatchToProps = dispatch => ({
+  usersActions: bindActionCreators(UsersActions, dispatch)
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

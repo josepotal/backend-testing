@@ -10,18 +10,19 @@ const api = require('./controllers/api');
 
 const app = express();
 
-//THIRD PARTY body-parser middleware
+// THIRD PARTY body-parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-//ERROR-HANDLING middlware
-app.use(function(err, req, res, next) {
+// ERROR-HANDLING middlware
+app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send('Something broke!');
+  next();
 });
 
 // BUILT-IN middleware --> serve static files '/public/index.js'
-app.use('/public', express.static(__dirname + '/public'));
+app.use('/public', express.static(`${__dirname}/public`));
 
 // THIRD-PARTY morgan middleware --> is an application.level middleware, as it has no mount path
 app.use(morgan('dev'));

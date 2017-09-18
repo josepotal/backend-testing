@@ -2,7 +2,7 @@
 const Sequelize = require('sequelize');
 const connection = require('../services/db');
 
-//define model (model name, and properties)
+// define model (model name, and properties)
 const User = connection.define('user', {
   first_name: {
     type: Sequelize.STRING,
