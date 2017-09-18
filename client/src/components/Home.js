@@ -28,9 +28,9 @@ class Home extends Component {
   }
 }
 
-Home.propTypes = {
-  usersActions: PropTypes.obj.isRequired
-};
+// Home.propTypes = {
+//   usersActions: PropTypes.obj.isRequired
+// };
 
 const mapStateToProps = state => ({
   users: state.users

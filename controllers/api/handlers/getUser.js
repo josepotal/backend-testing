@@ -6,8 +6,9 @@ module.exports = (req, res) => {
   User.findOne({
     where: { id: req.params.id }
   })
-    .then((users) => {
-      res.json(users);
+    .then((user) => {
+      // console.log(user.count;
+      res.json(user);
     })
     .catch((err) => {
       throw err;

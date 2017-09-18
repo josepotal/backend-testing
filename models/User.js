@@ -1,9 +1,9 @@
 // represents data, implements business logic and handles storage
 const Sequelize = require('sequelize');
-const connection = require('../services/db');
+const db = require('../services/db');
 
 // define model (model name, and properties)
-const User = connection.define('user', {
+const User = db.define('user', {
   first_name: {
     type: Sequelize.STRING,
     unique: true,
@@ -12,6 +12,17 @@ const User = connection.define('user', {
   second_name: {
     type: Sequelize.STRING
   }
+}, {
+  getterMethods: {
+    fullName() {
+      return `${this.first_name} ${this.second_name}`;
+    }
+  }
 });
+
+// Class Method
+
+// Instance Method
+// User.prototype.greet = () => `HELOOOO my name is ${User.first_name}`;
 
 module.exports = User;

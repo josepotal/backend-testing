@@ -54,10 +54,10 @@ class NewUser extends Component {
   }
 }
 
-NewUser.propTypes = {
-  usersActions: PropTypes.obj.isRequired,
-  handleSubmit: PropTypes.func.isRequired
-};
+// NewUser.propTypes = {
+//   usersActions: PropTypes.obj.isRequired,
+//   handleSubmit: PropTypes.func.isRequired
+// };
 
 export default reduxForm({
   form: 'NewUserForm'

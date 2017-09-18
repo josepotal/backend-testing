@@ -2,7 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 
-const connection = require('./services/db');
+const db = require('./services/db');
 
 // load router module in app
 const birds = require('./controllers/birds');
@@ -38,6 +38,6 @@ app.get('/pug', (req, res) => {
 app.use('/birds', birds);
 app.use('/api', api);
 
-connection.sync().then(() => {
+db.sync().then(() => {
   app.listen(5000, () => console.log('example app listening at port 5000...'));
 });
